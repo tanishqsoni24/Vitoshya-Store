@@ -13,4 +13,3 @@ Our passion for design and attention to detail are reflected in every aspect of 
 But our mission goes beyond just selling products. We want to help you create memories that will last a lifetime, and we do that by providing exceptional service and support at every step of your journey. From helping you choose the perfect invitations to finding the ideal gift for your loved ones, we are always here to make your special occasion unforgettable.
 
 Thank you for choosing Vitoshya Store – we look forward to helping you create memories that will last a lifetime!
-![image](https://user-images.githubusercontent.com/92535628/229031400-d634ca30-b01f-4acb-915c-6d895abf943e.png)
