@@ -1,0 +1,443 @@
+﻿{% extends "base/base.html" %}
+{% load static %}
+{% block extra_css %}
+<style>
+    .w3l-main-slider .banner-view {
+    background: url({% static "assets/images/birthday_slider.jpg" %}) no-repeat center;
+    -ms-background-size: cover;
+    background-size: cover;
+    z-index: 0;
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: 480px;
+    background-size: cover;
+}
+
+.w3l-main-slider .banner-top2 {
+    background: url({% static "assets/images/wedding.jpg" %}) no-repeat center;
+    background-size: cover;
+}
+
+.w3l-main-slider .banner-top3 {
+    background: url({% static "assets/images/birthday_slider.jpg" %}) no-repeat center;
+    background-size: cover;
+}
+
+.w3l-main-slider .banner-top4 {
+    background: url({% static "assets/images/birthday_slider.jpg" %}) no-repeat center;
+    background-size: cover;
+}
+</style>
+{% endblock %}
+{% block main %}
+    <!--//Header-->
+    <section class="w3mid-gap"></section>
+    <!--/Banner-Start-->
+    <!--/main-slider -->
+    <section class="w3l-main-slider banner-slider position-relative" id="home">
+        <div class="owl-one owl-carousel owl-theme">
+            <div class="item">
+                <div class="slider-info banner-view banner-top1">
+                    <div class="container">
+                        <div class="banner-info header-hero-19">
+                            <h5>Up To 60% Off Now</h5>
+                            <h3 class="title-hero-19">Mid Season Sale 40%</h3>
+                            <p>Final Clearance: Take 20% off ‘Sale Must-Haves'</p>
+                            <a href="/shop" class="btn btn-style btn-primary mt-sm-5 mt-4">Start Shopping <i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-info banner-view banner-top2">
+                    <div class="container">
+                        <div class="banner-info header-hero-19">
+                            <h5>Fall Summer Clearance</h5>
+                            <h3 class="title-hero-19">Enjoy The Season Sale</h3>
+                            <p>Final Clearance: Take 20% off ‘Sale Must-Haves'</p>
+                            <a href="/shop" class="btn btn-style btn-primary mt-sm-5 mt-4">Start Shopping <i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-info banner-view banner-top3">
+                    <div class="container">
+                        <div class="banner-info header-hero-19">
+                            <h5>Up To 60% Off Now</h5>
+                            <h3 class="title-hero-19">Mid Season Sale 40%</h3>
+                            <p>Final Clearance: Take 20% off ‘Sale Must-Haves'</p>
+                            <a href="/shop" class="btn btn-style btn-primary mt-sm-5 mt-4">Start Shopping <i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-info banner-view banner-top4">
+                    <div class="container">
+                        <div class="banner-info header-hero-19">
+                            <h5>Fall Summer Clearance</h5>
+                            <h3 class="title-hero-19">Enjoy The Season Sale</h3>
+                            <p>Final Clearance: Take 20% off ‘Sale Must-Haves'</p>
+                            <a href="/shop" class="btn btn-style btn-primary mt-sm-5 mt-4">Start Shopping <i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //main-slider -->
+    <!-- /Free-Ship-->
+    <section class="w3free-ship text-center py-md-5 py-4">
+        <h2>Free Shipping For You Till Midnight <i class="fas fa-shipping-fast ms-lg-3"></i></h2>
+    </section>
+
+    {# products #}
+    <section class="w3l-ecommerce-main">
+            <div class="ecom-contenthny py-5">
+            <div class="container py-lg-5">
+                <h3 class="title-w3l">Shop With Us</h3>
+                <p class="">Handpicked Favourites just for you</p>
+                <!-- /row-->
+                <div class="ecom-products-grids row mt-lg-4 mt-3">
+
+                    {% for product in products %}
+                        <div class="col-lg-3 col-6 product-incfhny mt-4">
+                        <div class="product-grid2 shopv">
+                            <div class="product-image2">
+                                <a href="{% url "product" product.slug %}">
+                                        <img class="pic-1 img-fluid radius-image" src="{{ product.product_images.first.image.url }}">
+                                        <img class="pic-2 img-fluid radius-image" src="{{ product.product_images.first.image.url }}">
+                                </a>
+{#                                <ul class="social">#}
+{#                                    <li><a href="#" data-tip="Quick View"><span class="fa fa-eye"></span></a></li>#}
+{##}
+{#                                    <li><a href="{% url "cartAdd" product.uid %}" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+                                <div class="shopv single-item">
+                                    <form action="{% url "cartAdd" product.uid %}" method="get">
+                                        <button type="submit" class="shopv-cart pshopv-cart add-to-cart">
+                                            Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="product-single.html">{{ product.name }}</a></h3>
+                                <span class="price">₹{{ product.price }}</span>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+    </section>
+    <!-- About US -->
+    <section class="w3l-index5 py-5" id="video">
+        <div class="new-block py-5">
+            <div class="container">
+                <div class="video-info">
+                    <div class="title-content text-center">
+                        <h3 class="title-w3l two mb-5">Pre-Fall Collection,That mid-summer<br> craving for fall styles?</h3>
+                    </div>
+                </div>
+                <div class="history-info py-lg-5 align-self pt-0">
+                    <div class="position-relative mt-lg-3 py-5 pt-lg-0">
+                        <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
+                            <span class="video-play-icon">
+                                <span class="fa fa-play"></span>
+                            </span>
+                        </a>
+                        <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                        <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                            <iframe src="https://player.vimeo.com/video/145014989" frameborder="0" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="w3l-3-grids py-5" id="about-1">
+        <div class="container py-md-5 py-2 pb-0">
+            <!--/row-1-->
+            <div class="w3abin-top text-center">
+                <div class="title-content">
+                    <h6 class="title-subw3hny mb-1">Our Info</h6>
+                    <h3 class="title-w3l">Vitoshya Store</h3>
+                </div>
+                <p class="mt-3" style="text-align: justify;">At Vitoshya Store, we believe that life's most special moments should be celebrated in style. That's why we offer a carefully curated selection of wedding, birthday, and event invitations, as well as unique gifts and keepsakes that will help you create lasting memories with your loved ones.
+
+                    But our mission doesn't stop there. We are also committed to providing exceptional service and convenience to our customers, which is why we offer a reliable delivery service that brings your purchases directly to your doorstep. Whether you're purchasing an invitation for your special event or a gift for your loved ones, we want to make your shopping experience as seamless and hassle-free as possible.
+                    
+                    Our bulk delivery service is perfect for event planners, businesses, and individuals who need a large quantity of invitations or gifts for their special occasion. We understand the importance of timely and efficient delivery, and we work closely with our customers to ensure that their orders are delivered on time and in perfect condition.
+                    
+                    Our passion for design and attention to detail are reflected in every aspect of our store, from our elegant invitations to our beautiful selection of gifts. We are committed to providing exceptional quality and craftsmanship, and we work with the best designers and artists to ensure that our products are both beautiful and functional.
+                    
+                    But our mission goes beyond just selling products. We want to help you create memories that will last a lifetime, and we do that by providing exceptional service and support at every step of your journey. From helping you choose the perfect invitations to finding the ideal gift for your loved ones, we are always here to make your special occasion unforgettable.
+                    
+                    Thank you for choosing Vitoshya Store – we look forward to helping you create memories that will last a lifetime!
+                    
+                    </p>
+                <a href="#" class="btn btn-style btn-primary mt-sm-5 mt-4">Read More<i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a>
+            </div>
+            <!--//row-1-->
+        </div>
+    </div>
+
+    <!-- /home-page-video-popup-->
+
+    <!-- //home-page-video-popup-->
+    <!-- //products-->
+	<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90--->
+ 
+</div>
+    <!-- testimonials section -->
+    <section class="w3l-clients w3l-test" id="testimonials">
+        <div class="container py-lg-5 py-md-4 pt-5 pb-5">
+            <div class="row">
+                <div class="col-lg-4 testimonials-con-left-info py-sm-5 pt-0 py-3">
+                    <div class="title-content text-left p-xl-3">
+                        <h6 class="title-subw3hny">Reviews</h6>
+                        <h3 class="title-w3l two">What Clients Say ?</h3>
+                        <p class="test-p mt-3">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
+                            ultrices in ligula. Semper at tempufddfel.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-8 testimonials-con-right mt-lg-0 mt-3 p-xl-3 pb-4">
+                    <div id="owl-demo2" class="owl-carousel owl-theme testimonials-2 py-sm-5 pt-0 py-3">
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+
+                                    <p><i class="fas fa-quote-left me-2"></i> Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                                        faucibus orci luctus et ultrices posuere.</p>
+                                </div>
+                                <div class="bottom-info mt-4">
+                                    <a class="comment-img" href="#url"><img src="assets/images/team1.jpg" class="img-fluid radius-image" alt="placeholder image"></a>
+                                    <div class="people-info align-self">
+                                        <h3>Johnson william</h3>
+                                        <p class="identity">Example City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+                                    <p><i class="fas fa-quote-left me-2"></i> Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                                        faucibus orci luctus et ultrices posuere.</p>
+                                </div>
+                                <div class="bottom-info mt-4">
+                                    <a class="comment-img" href="#url"><img src="assets/images/team2.jpg" class="img-fluid radius-image" alt="placeholder image"></a>
+                                    <div class="people-info align-self">
+                                        <h3>Alexander sakura</h3>
+                                        <p class="identity">Example City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+                                    <p><i class="fas fa-quote-left me-2"></i> Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                                        faucibus orci luctus et ultrices posuere.</p>
+                                </div>
+                                <div class="bottom-info mt-4">
+                                    <a class="comment-img" href="#url"><img src="assets/images/team3.jpg" class="img-fluid radius-image" alt="placeholder image"></a>
+                                    <div class="people-info align-self">
+                                        <h3>John wilson</h3>
+                                        <p class="identity">Example City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+                                    <p><i class="fas fa-quote-left me-2"></i> Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                                        faucibus orci luctus et ultrices posuere.</p>
+                                </div>
+                                <div class="bottom-info mt-4">
+                                    <a class="comment-img" href="#url"><img src="assets/images/team4.jpg" class="img-fluid radius-image" alt="placeholder image"></a>
+                                    <div class="people-info align-self">
+                                        <h3>Julia sakura</h3>
+                                        <p class="identity">Example City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+                                    <p><i class="fas fa-quote-left me-2"></i> Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                                        faucibus orci luctus et ultrices posuere.</p>
+                                </div>
+                                <div class="bottom-info mt-4">
+                                    <a class="comment-img" href="#url"><img src="assets/images/team2.jpg" class="img-fluid radius-image" alt="placeholder image"></a>
+                                    <div class="people-info align-self">
+                                        <h3>John wilson</h3>
+                                        <p class="identity">Example City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+                                    <p><i class="fas fa-quote-left me-2"></i> Lorem ipsum dolor sit amet elit. hic odio tenetur. ante ipsum primis in
+                                        faucibus orci luctus et ultrices posuere.</p>
+                                </div>
+                                <div class="bottom-info mt-4">
+                                    <a class="comment-img" href="#url"><img src="assets/images/team3.jpg" class="img-fluid radius-image" alt="placeholder image"></a>
+                                    <div class="people-info align-self">
+                                        <h3>Julia sakura</h3>
+                                        <p class="identity">Example City</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //testimonials-section-->
+    <!--/w3l-subscription-infhny-->
+    <section class="w3l-subscription-infhny py-5">
+        <div class="container py-md-5">
+            <div class="subscription-info text-center mx-auto">
+                <i class="far fa-envelope"></i>
+                <h3 class="title-w3l mb-2">Get On The List</h3>
+                <p>Shop Exclusive Promos & SAVE 20% on Your First Order</p>
+
+                <form action="/saveNewsLetter" method="post" class="w3l-signin-form mt-4 mb-3"> {% csrf_token %}
+                    <div class="forms-gds">
+                        <div class="form-input">
+                            <input type="email" name="email" placeholder="Your email here" required="">
+                        </div>
+                        <div class="form-input"><button class="btn btn-style btn-primary">Subscribe</button></div>
+                    </div>
+                </form>
+                <p>By entering your email, you are accepting our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </section>
+    <!--//w3l-subscription-infhny-->
+    {% endblock %}
+    <!-- Template JavaScript -->
+    {% block extJS %}
+    <!-- //cart-js -->
+    <!-- owlcarousel -->
+    <script src="{% static "assets/js/owl.carousel.js" %}"></script>
+    <!-- script for banner slider-->
+    <script>
+        $(document).ready(function() {
+            $('.owl-one').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: false,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplaySpeed: 1000,
+                autoplayHoverPause: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    480: {
+                        items: 1
+                    },
+                    667: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 1
+                    }
+                }
+            })
+        })
+
+    </script>
+    <!-- //script -->
+    <!-- script for tesimonials carousel slider -->
+    <script>
+        $(document).ready(function() {
+            $("#owl-demo2").owlCarousel({
+                loop: true,
+                nav: false,
+                margin: 50,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    },
+                    991: {
+                        items: 2,
+                        margin: 30,
+                        nav: false
+                    },
+                    1080: {
+                        items: 2,
+                        nav: false
+                    }
+                }
+            })
+        })
+
+    </script>
+    <!-- //script for tesimonials carousel slider -->
+    <!-- video popup -->
+    <script src="{% static "assets/js/jquery.magnific-popup.min.js" %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+
+    </script>
+    <!-- //video popup -->
+        
+    {% endblock %}

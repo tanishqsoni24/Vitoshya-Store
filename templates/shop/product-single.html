@@ -1,0 +1,128 @@
+﻿{% extends "base/base.html" %}
+{% load static %}
+{% block main %}
+    <section class="w3l-ecommerce-main mt-5">
+        <!-- /products-->
+        <div class="ecom-contenthny w3l-ecommerce-main-inn py-5">
+            <div class="container py-lg-5">
+                <!--/row1-->
+                <div class="sp-store-single-page row">
+                    <div class="col-lg-5 single-right-left">
+                        <div class="flexslider1">
+                            <ul class="slides">
+                                {% for iterator in product.product_images.all %}
+                                <li data-thumb="{{ iterator.image.url }}">
+                                    <div class="thumb-image"> <img src="{{ iterator.image.url }}" data-imagezoom="true" class="img-fluid radius-image" alt=" "> </div>
+                                </li>
+                               {% endfor %}
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="eco-buttons mt-5 d-flex">
+                            <div class="buyhny-now"> <a href="{% url "cartAdd" product.uid %}" class="btn btn-style btn-primary">Add to Cart </a></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 single-right-left ps-lg-5">
+                        <h3>Men Slim Fit Checkered Casual Shirt
+                        </h3>
+                        <div class="caption">
+
+                            <ul class="rating-single">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star-half-o yellow-star" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star-half yellow-star" aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <h6>
+                                <span class="item_price">$575</span>
+                                <del>$1,199</del> Free Delivery
+                            </h6>
+                        </div>
+                        <div class="desc_single my-4">
+                            <ul class="emi-views">
+                                <li><span>Special Price</span> Get extra 5% off (price inclusive of discount)</li>
+                                <li><span>Bank Offer</span> 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</li>
+                                <li><span>Bank Offer</span> 5% Cashback* on HDFC Bank Debit Cards</li>
+                                <li><span>Bank Offer</span> Extra 5% off* with Axis Bank Buzz Credit Card</li>
+                            </ul>
+                        </div>
+                        <div class="desc_single mb-4">
+                            <h5>Description:</h5>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere, ratione et ipsam velit
+                                explicabo deleniti obcaecati a, numquam, unde quisquam quas quae accusamus eveniet magni.
+                                Nobis iure et porro aut..</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--//row1-->
+
+        </div>
+    </section>
+    <!--/w3l-ecommerce-main-->
+    <!-- //products-->
+	<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90--->
+ 
+</div>
+    <!-- FlexSlider -->
+{% endblock %}
+
+{% block extJS %}
+    <!-- //price range (top products) -->
+    <script src="{% static 'assets/js/jquery.flexslider.js' %}"></script>
+    <!-- single -->
+    <script src="{% static 'assets/js/imagezoom.js' %}"></script>
+<script>
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider1').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+
+    </script>
+    <script src="{% static 'assets/js/jquery-ui.js' %}"></script>
+    <script>
+        //<![CDATA[
+        $(window).load(function() {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 9000,
+                values: [50, 6000],
+                slide: function(event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+        }); //]]>
+
+    </script>
+{% endblock %}

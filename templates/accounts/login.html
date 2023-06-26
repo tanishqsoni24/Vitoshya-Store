@@ -1,0 +1,70 @@
+﻿{% extends "base/base.html" %}
+
+{% block main %}
+    <!--//Header-->
+    <section class="w3mid-gap"></section>
+    <!--/Banner-Start-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Login </h2>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Login </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+	<div style="margin: 8px auto; display: block; text-align:center;"></div>
+
+<!---728x90--->
+
+ 
+    <section class="w3l-forml-main py-5">
+        <div class="form-hnyv-sec py-sm-5 py-3">
+            <!--form-stars-here-->
+            <div class="form-wrapv">
+
+                <h2>Login to your account</h2>
+                <form method="post"> {% csrf_token %}
+                    <div class="form-sub-w3">
+                        <input type="text" name="Username" placeholder="Username " required="">
+                        <div class="icon-w3">
+                            <span class="fas fa-user" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-sub-w3">
+                        <input type="password" name="Password" placeholder="Password" required="">
+                        <div class="icon-w3">
+                            <span class="fas fa-unlock-alt" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-sub-content">
+                        <p class="forgot-w3ls">Forgot Password?<a class="" href="#"> Click here</a></p>
+                        <p class="forgot-w3ls1">New User? <a class="" href="/accounts/register">Signup here</a></p>
+                    </div>
+                    <div class="submit-button text-center">
+                        <button class="btn btn-style btn-primary">Login Now</button>
+
+                    </div>
+                </form>
+
+            </div>
+            <!--//form-ends-here-->
+        </div>
+        <!-- //coming -->
+    </section>
+	<div style="margin: 8px auto; display: block; text-align:center;">
+    </div>
+
+    {% endblock %}

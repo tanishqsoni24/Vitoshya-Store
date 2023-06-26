@@ -1,0 +1,174 @@
+﻿{% extends "base/base.html" %}
+{% load static %}
+{% block main %}
+
+    <section class="w3mid-gap"></section>
+    <!--/Banner-Start-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Products </h2>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Products </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+    <!--/w3l-ecommerce-main-->
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90--->
+
+
+</div>
+
+    <section class="w3l-ecommerce-main">
+        <!-- /products-->
+        <div class="ecom-contenthny py-5">
+            <div class="container py-lg-5">
+                <!-- about -->
+                <div class="ecom-contenthny-w3lcheckout privacy">
+                    <h3>Your <span>Cart</span></h3>
+                    <div class="checkout-right">
+                        <p class="mb-5">Your shopping cart contains: <span>{{ cart|length }} Products</span></p>
+                        {% if cart|length %}
+                        <table class="timetable_sub">
+                            <thead>
+                                <tr>
+                                    <th>SL No.</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Product Name</th>
+
+                                    <th>Price</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in cart %}
+                                <tr class="rem{{ forloop.counter }}">
+                                    <td class="invert">{{ forloop.counter }}</td>
+                                    <td class="invert-image"><a href="product-single.html">
+                                            <img src="{{ item.product.product_images.first.image.url }}" style="width:5rem; height:5rem;" class="img-fluid radius-image" alt=""></a></td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <div class="entry value-minus" data-id="{{ forloop.counter }}">&nbsp;</div>
+                                                <div class="entry value" data-uid = "{{ item.id }}"><span>{{ item.quantity }}</span></div>
+                                                <div class="entry value-plus active" data-id="{{ forloop.counter }}" >&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="invert">{{ item.product.name }}</td>
+
+                                    <td class="invert" id="price-{{ forloop.counter }}">₹ {{ item.total }}</td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <div class="close1"><i class="far fa-window-close"></i> </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <h3 class="text-center">Cart is Empty</h3>
+                        {% endif %}
+                    </div>
+                    <div class="row checkout-left mt-3">
+                        <div class="col-md-12 checkout-left-basket">
+                            <ul class="mb-5">
+                                <li><i></i> <span id="totals" style="font-size: x-large"><strong>{% if cart|length %}Total ₹ {{ total }} {% endif %}</strong> </span></li>
+                            </ul>
+                            {% if cart|length %}
+                            <h4 onclick="update_change()">Update Changes</h4>
+                            <h4><a href="/shop" class="text-white">Proceed To Payment</a></h4>
+                            {% else %}
+                            <h4 class="mt-5"><a href="/shop" class="text-white">Continue Shopping</a></h4>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- //about -->
+            </div>
+        </div>
+    </section>
+
+    <!-- //js -->
+    <!--quantity-->
+
+
+{% endblock %}
+
+
+{% block extJS %}
+
+    <script>
+
+    function update_change(){
+        let cart = [];
+        let quantities = document.querySelectorAll(".value");
+        let uid = document.querySelectorAll(".value");
+        for(let i = 0; i < quantities.length; i++){
+            cart.push({
+                "uid": uid[i].getAttribute("data-uid"),
+                "quantity": quantities[i].innerText
+            })
+        }
+        $.ajax({
+            type: "POST",
+            url: "{% url 'cartUpdate' %}",
+            data: {
+                "cart": JSON.stringify(cart),
+                "csrfmiddlewaretoken": "{{ csrf_token }}"
+            },
+            success: function (response){
+
+            },
+            error: function (response) {
+                console.log(response)
+            }
+        });
+    }
+
+    let totals = $("#totals")[0];
+        $('.value-plus').on('click', function() {
+            let divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) + 1;
+            let id = $(this)[0].getAttribute("data-id");
+            let price_tag = $(`#price-${id}`)[0]
+            let new_price = parseFloat(price_tag.innerText.split("₹")[1]) * (newVal / (newVal - 1))
+            let total_price = parseFloat(totals.innerText.split("₹")[1]) + (price_tag.innerText.split("₹")[1]/ (newVal - 1))
+            totals.innerText = `Total ₹ ${total_price}`;
+            price_tag.innerText = `₹ ${new_price}`
+            divUpd.text(newVal);
+        });
+
+        $('.value-minus').on('click', function() {
+            let divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) - 1;
+            if (newVal >= 1) {
+                divUpd.text(newVal)
+                let id = $(this)[0].getAttribute("data-id");
+                let price_tag = $(`#price-${id}`)[0]
+                let new_price = parseFloat(price_tag.innerText.split("₹")[1]) * (newVal / (newVal + 1));
+                let total_price = parseFloat(totals.innerText.split("₹")[1]) - (price_tag.innerText.split("₹")[1]/ (newVal + 1))
+                totals.innerText = `Total ₹ ${total_price}`;
+                price_tag.innerText = `₹ ${new_price}`
+            }
+        });
+
+    </script>
+
+{% endblock %}
