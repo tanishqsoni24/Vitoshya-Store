@@ -34,9 +34,9 @@
         <div class="form-hnyv-sec py-sm-5 py-3">
             <!--form-stars-here-->
             <div class="form-wrapv">
-
                 <h2>Register yourself</h2>
                 <form method="post"> {% csrf_token %}
+                    {% include "base/alert.html" %}
                     <div class="form-sub-w3">
                         <input type="text" name="full_name" placeholder="Full Name " required="">
                         <div class="icon-w3">
@@ -65,8 +65,7 @@
                         <p class="forgot-w3ls1">Already Have a account?<a class="" href="/accounts/login"> Login here</a></p>
                     </div>
                     <div class="submit-button text-center">
-                        <button class="btn btn-style btn-primary">Login Now</button>
-
+                        <button class="btn btn-style btn-primary">Signup Now</button>
                     </div>
                 </form>
 

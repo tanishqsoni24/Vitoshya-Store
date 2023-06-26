@@ -141,7 +141,7 @@
             <div class="container">
                 <div class="video-info">
                     <div class="title-content text-center">
-                        <h3 class="title-w3l two mb-5">Pre-Fall Collection,That mid-summer<br> craving for fall styles?</h3>
+                        <h3 class="title-w3l two mb-5">Unveiling Sentiments<br> Where Cards Speak Volumes for Every Occasion</h3>
                     </div>
                 </div>
                 <div class="history-info py-lg-5 align-self pt-0">
@@ -151,10 +151,6 @@
                                 <span class="fa fa-play"></span>
                             </span>
                         </a>
-                        <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-                        <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-                            <iframe src="https://player.vimeo.com/video/145014989" frameborder="0" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
-                        </div>
                     </div>
                 </div>
 
@@ -183,7 +179,6 @@
                     Thank you for choosing Vitoshya Store – we look forward to helping you create memories that will last a lifetime!
                     
                     </p>
-                <a href="#" class="btn btn-style btn-primary mt-sm-5 mt-4">Read More<i class="fas fa-arrow-right ms-lg-3 ms-2"></i></a>
             </div>
             <!--//row-1-->
         </div>
@@ -319,6 +314,7 @@
                 <p>Shop Exclusive Promos & SAVE 20% on Your First Order</p>
 
                 <form action="/saveNewsLetter" method="post" class="w3l-signin-form mt-4 mb-3"> {% csrf_token %}
+                    {% include "base/alert.html" %}
                     <div class="forms-gds">
                         <div class="form-input">
                             <input type="email" name="email" placeholder="Your email here" required="">

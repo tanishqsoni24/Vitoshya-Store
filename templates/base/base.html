@@ -285,14 +285,18 @@ RIGHT SIDEBAR TOGGLE SECTION
     <footer class="w3l-footer-29-main">
         <div class="footer-29 py-5">
             <div class="container py-lg-4">
-                <h2>Special Offer All Branded Sandals are <br>Flat 50% Discount</h2>
+                <h2>Special Offer All Cards are <br>Flat 50% Discount</h2>
                 <div class="row footer-top-29 mt-md-5">
                    <div class="col-lg-3 col-md-6 footer-list-29 footer-3 pe-lg-5">
                         <h6 class="footer-title-29">USeful Links</h6>
                         <div class="footer-listw3-grids">
                             <ul class="footer-listw3">
-                                <li><a href="/">Home</a></li>
-                                <li><a href="about.html">About</a></li>
+                                <li><a href="/">Home</a>
+                                {% if home %}
+                                <li><a href="#about-1">About</a></li>
+                                {% else %}
+                                <li><a href="/#about-1">About</a></li>
+                                {% endif %}
                                 <li><a href="blog.html">Blogs</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                                 <li><a href="#support">Support</a></li>

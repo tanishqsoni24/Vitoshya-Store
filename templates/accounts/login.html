@@ -15,7 +15,7 @@
                     </div>
                     <div class="w3breadcrumb-right">
                         <ul class="breadcrumbs-custom-path">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Login </li>
                         </ul>
                     </div>
@@ -37,6 +37,7 @@
 
                 <h2>Login to your account</h2>
                 <form method="post"> {% csrf_token %}
+                    {% include "base/alert.html" %}
                     <div class="form-sub-w3">
                         <input type="text" name="Username" placeholder="Username " required="">
                         <div class="icon-w3">

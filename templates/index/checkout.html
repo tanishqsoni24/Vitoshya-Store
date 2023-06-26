@@ -15,7 +15,7 @@
                     </div>
                     <div class="w3breadcrumb-right">
                         <ul class="breadcrumbs-custom-path">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Products </li>
                         </ul>
                     </div>
@@ -59,7 +59,7 @@
                             {% for item in cart %}
                                 <tr class="rem{{ forloop.counter }}">
                                     <td class="invert">{{ forloop.counter }}</td>
-                                    <td class="invert-image"><a href="product-single.html">
+                                    <td class="invert-image"><a href="{% url "product" item.product.slug %}">
                                             <img src="{{ item.product.product_images.first.image.url }}" style="width:5rem; height:5rem;" class="img-fluid radius-image" alt=""></a></td>
                                     <td class="invert">
                                         <div class="quantity">
@@ -92,8 +92,8 @@
                                 <li><i></i> <span id="totals" style="font-size: x-large"><strong>{% if cart|length %}Total ₹ {{ total }} {% endif %}</strong> </span></li>
                             </ul>
                             {% if cart|length %}
-                            <h4 onclick="update_change()">Update Changes</h4>
-                            <h4><a href="/shop" class="text-white">Proceed To Payment</a></h4>
+                            <h4 onclick="update_change()" id="update-btn" style="cursor: pointer; display: none">No Changes!</h4>
+                            <h4><a href="https://wa.me/8057671770" class="text-white">Click Here For Payment!</a></h4>
                             {% else %}
                             <h4 class="mt-5"><a href="/shop" class="text-white">Continue Shopping</a></h4>
                             {% endif %}
@@ -134,7 +134,8 @@
                 "csrfmiddlewaretoken": "{{ csrf_token }}"
             },
             success: function (response){
-
+               document.getElementById("update-btn").innerHTML = "Changes Applied!";
+               document.getElementById("update-btn").style.background = "grey";
             },
             error: function (response) {
                 console.log(response)
@@ -152,6 +153,9 @@
             let total_price = parseFloat(totals.innerText.split("₹")[1]) + (price_tag.innerText.split("₹")[1]/ (newVal - 1))
             totals.innerText = `Total ₹ ${total_price}`;
             price_tag.innerText = `₹ ${new_price}`
+            document.getElementById("update-btn").innerHTML = "Apply Changes!"
+            document.getElementById("update-btn").style.display = "block";
+            document.getElementById("update-btn").style.background = "#EF233C";
             divUpd.text(newVal);
         });
 
@@ -165,6 +169,9 @@
                 let new_price = parseFloat(price_tag.innerText.split("₹")[1]) * (newVal / (newVal + 1));
                 let total_price = parseFloat(totals.innerText.split("₹")[1]) - (price_tag.innerText.split("₹")[1]/ (newVal + 1))
                 totals.innerText = `Total ₹ ${total_price}`;
+                document.getElementById("update-btn").innerHTML = "Apply Changes!"
+                document.getElementById("update-btn").style.display = "block";
+                document.getElementById("update-btn").style.background = "#EF233C";
                 price_tag.innerText = `₹ ${new_price}`
             }
         });

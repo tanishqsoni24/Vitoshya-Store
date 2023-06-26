@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 from .models import *
 import json
 
@@ -8,7 +8,8 @@ import json
 def index(request):
     Categories = Category.objects.all()
     products = Product.objects.all()
-    return render(request, "shop/products.html", {'products': products, 'category': Categories})
+    recent_products = list(Product.objects.all().order_by('-created_at')[:2])
+    return render(request, "shop/products.html", {'products': products, 'category': Categories, 'recent_products':recent_products})
 
 
 def product(request, slug):
@@ -27,7 +28,7 @@ def addToCart(request, uid):
         else:
             cart = Cart(account=request.user, product=prod, quantity=1)
             cart.save()
-    return redirect("home")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def updateCart(request):
     if request.method == "POST":
