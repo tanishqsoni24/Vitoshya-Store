@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-j2w&7ak02h(+ds4hu3-4=z+@vgh^)25_)g3b5%e&8)b5la+p60
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -79,9 +79,17 @@ WSGI_APPLICATION = 'vitoshya_store.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'vitoshya',
+        'USER': 'tanishq',
+        'PASSWORD': 'project@123',
+        'HOST': 'vitoshya.hopto.org',
+        'PORT': '3306',
     }
 }
 
@@ -123,12 +131,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = "/var/www/html/static/"
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = "/var/www/html/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
